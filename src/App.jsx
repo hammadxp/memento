@@ -29,7 +29,7 @@ export default function App() {
     setDisabled(false);
   }
 
-  // Handle all matched
+  // Handle all cards matched
 
   function handleAllMatched() {
     setWins((wins) => wins + 1);

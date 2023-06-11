@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function useAppBadge() {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(1);
 
   function setBadge() {
     setCounter(counter + 1);
