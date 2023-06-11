@@ -9,18 +9,13 @@ export default function App() {
   const [secondCard, setSecondCard] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [wins, setWins] = useState(0);
+  const [heading, setHeading] = useState("Memento (Memory Game)");
 
   // Handle card selection
 
   function handleClick(card) {
-    console.log("You clicked a card.");
-    console.log(card);
-
     if (!disabled) {
       firstCard ? setSecondCard(card) : setFirstCard(card);
-
-      // console.log("firstCard: " + firstCard);
-      // console.log("secondCard: " + secondCard);
     }
   }
 
@@ -35,20 +30,19 @@ export default function App() {
   // Handle new game
 
   function handleNewGame() {
-    setWins(0);
+    setHeading("Memento (Memory Game)");
+
     setCards(shuffle);
     handleTurn();
   }
 
-  // Used for selection and match handling
+  // Handle cards match
 
   useEffect(() => {
     let pickTimer; // to later clear 'setTimeout' timer
 
     if (firstCard && secondCard) {
       if (firstCard.path === secondCard.path) {
-        console.log("Cards matched!");
-
         setCards((prevCards) => {
           return prevCards.map((card) => {
             if (card.path === firstCard.path) {
@@ -77,21 +71,22 @@ export default function App() {
     };
   }, [cards, firstCard, secondCard, wins]);
 
+  // Handle all cards matched
+
   useEffect(() => {
     const matchedCards = cards.filter((card) => card.matched);
 
     if (cards.length === matchedCards.length) {
-      alert("You won!");
-      setWins(wins + 1);
-
-      setCards(shuffle);
-      handleTurn();
+      setWins((wins) => wins + 1);
+      setHeading("You won!");
     }
-  }, [cards, wins]);
+  }, [cards]);
+
+  // Component content
 
   return (
     <>
-      <Header wins={wins} handleNewGame={handleNewGame} />
+      <Header wins={wins} heading={heading} handleNewGame={handleNewGame} />
       <div className="grid">
         {cards.map((card) => {
           const { id, path, matched } = card;
