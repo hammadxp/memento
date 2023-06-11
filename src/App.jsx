@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import shuffle from "./utilities/shuffle";
+import useAppBadge from "./hooks/useAppBadge";
 
 export default function App() {
   const [cards, setCards] = useState(shuffle);
@@ -10,6 +11,7 @@ export default function App() {
   const [disabled, setDisabled] = useState(false);
   const [wins, setWins] = useState(0);
   const [heading, setHeading] = useState("Memento (Memory Game)");
+  const [setBadge, clearBadge] = useAppBadge();
 
   // Handle card selection
 
@@ -27,10 +29,19 @@ export default function App() {
     setDisabled(false);
   }
 
+  // Handle all matched
+
+  function handleAllMatched() {
+    setWins((wins) => wins + 1);
+    setBadge();
+    setHeading("You won!");
+  }
+
   // Handle new game
 
   function handleNewGame() {
     setHeading("Memento (Memory Game)");
+    clearBadge();
 
     setCards(shuffle);
     handleTurn();
@@ -77,8 +88,7 @@ export default function App() {
     const matchedCards = cards.filter((card) => card.matched);
 
     if (cards.length === matchedCards.length) {
-      setWins((wins) => wins + 1);
-      setHeading("You won!");
+      handleAllMatched();
     }
   }, [cards]);
 
