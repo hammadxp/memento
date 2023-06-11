@@ -13,7 +13,8 @@ export default function App() {
   // Handle card selection
 
   function handleClick(card) {
-    console.log("You clicked a card");
+    console.log("You clicked a card.");
+    console.log(card);
 
     if (!disabled) {
       firstCard ? setSecondCard(card) : setFirstCard(card);
@@ -100,6 +101,7 @@ export default function App() {
               key={id}
               path={path}
               selected={card === firstCard || card === secondCard || matched}
+              card={card}
               handleClick={handleClick}
             />
           );
