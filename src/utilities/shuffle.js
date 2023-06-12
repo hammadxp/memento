@@ -8,6 +8,8 @@ export default function shuffle() {
     { path: "/images/node.png" },
     { path: "/images/ts.png" },
     { path: "/images/jquery.png" },
+    { path: "/images/go.png" },
+    { path: "/images/dart.png" },
   ];
 
   const shuffledImages = [...images, ...images]

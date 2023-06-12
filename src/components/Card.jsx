@@ -3,7 +3,7 @@ export default function Card({ path, selected, card, handleClick }) {
     <div className="card">
       <div className={selected && "selected"}>
         <img src={path} alt="" className="card-face" />
-        <img src="/images/fireship.png" alt="" className="card-back" onClick={() => handleClick(card)} />
+        <img src="/images/placeholder.png" alt="" className="card-back" onClick={() => handleClick(card)} />
       </div>
     </div>
   );

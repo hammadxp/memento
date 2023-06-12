@@ -86,7 +86,7 @@ button {
   gap: 1.25rem;
   display: grid;
   margin: 3rem auto;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(5, auto);
 }
 
 /* ========= Card ========================= */
